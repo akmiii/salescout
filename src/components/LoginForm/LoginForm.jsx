@@ -1,17 +1,39 @@
 import React from 'react';
-import { Form, Button, Input, Checkbox } from "antd";
+import {Form, Button, Input, Checkbox} from "antd";
+import { Link } from 'react-router-dom'; // Import Link from React Router
+
 import './LoginForm.css';
+import {MaskedInput} from "antd-mask-input";
 
 const LoginForm = ({ onLogin }) => {
     const onFinish = (values) => {
-        onLogin(values);
+        onLogin(values)
     };
-
+    // const onFinish = async (values) => {
+    //     try{
+    //         const response = await fetch("/api/login", {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify(values)
+    //         });
+    //         const data = await response.json();
+    //         if (data.success) {
+    //             console.log("Login successful");
+    //         } else {
+    //             console.error('Login failed:', data.message);
+    //         }
+    //     } catch (error) {
+    //         console.error('Login failed:', error);
+    //     }
+    // };
     return (
         <div className="login-form-container">
             <Form
                 layout="vertical"
-                onFinish={onFinish}>
+                onFinish={onFinish}
+            >
                 <div className="login-form-header">
                     <h2>Вход в аккаунт</h2>
                 </div>
@@ -19,7 +41,12 @@ const LoginForm = ({ onLogin }) => {
                     label="Номер телефона:"
                     name="phoneNumber"
                 >
-                    <Input placeholder="+7(___)__ ____" required />
+                    <MaskedInput
+                        mask={
+                        '(000) 000-00-00'
+                        }
+                        addonBefore="+7"
+                        placeholder="(___)__ ____" required />
                 </Form.Item>
 
                 <Form.Item
@@ -45,9 +72,10 @@ const LoginForm = ({ onLogin }) => {
                 </Form.Item>
                 <Form.Item>
                     <span>Нет аккаунта? </span>
-                    <a className="login-form-forgot" href="#">
-                        Зарегистрироваться
-                    </a>
+                    {/*<a className="login-form-forgot" onClick={onToggleForm} href="./RegistrationForm">*/}
+                    {/*    Зарегистрироваться*/}
+                    {/*</a>*/}
+                    <Link to='/RegistrationForm' className="login-form-forgot">Зарегистрироваться </Link>
                 </Form.Item>
             </Form>
         </div>

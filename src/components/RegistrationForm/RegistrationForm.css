@@ -1,4 +1,4 @@
-.login-form-container {
+.registration-form-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,18 +11,8 @@
     border: 1px solid #ccc;
 }
 
-.login-form-header {
+.registration-form-header {
     text-align: left;
     margin-bottom: 10px;
     font-size: 20px;
-}
-
-.remember-me {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.remember-me .password-forgot{
-    margin-left: 62px;
 }
